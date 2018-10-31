@@ -6,6 +6,7 @@ namespace CityInfo.API
 {
     public class CitiesDataStore
     {
+        public static CitiesDataStore Current { get; } = new CitiesDataStore();
         public List<CityDto> Cities { get; set; }
 
         public CitiesDataStore()
@@ -31,7 +32,7 @@ namespace CityInfo.API
                     Name = "Paris",
                     Description = "The one with that big tower."
                 }
-            }
+            };
         }
     }
 }
