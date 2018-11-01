@@ -9,9 +9,23 @@ namespace CityInfo.API.Controllers
     [Route("api/[controller]")]
     public class CitiesController : Controller
     {
-        public JsonResult GetCities()
+        public IActionResult GetCities()
         {
-            return new JsonResult(CitiesDataStore.Current);
+            var cities = CitiesDataStore.Current;
+            return Ok(cities);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCity(int id)
+        {
+            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(city);
         }
     }
 }
